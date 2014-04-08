@@ -48,7 +48,6 @@ sub call {
                         proxy_url => $self->{__RPC__}->proxy->endpoint,
                         method    => $func,
                         params    => \@opts,
-                        content   => undef,
                         error     => $som->faultstring
                     }
                 ) if $self->can('log');
