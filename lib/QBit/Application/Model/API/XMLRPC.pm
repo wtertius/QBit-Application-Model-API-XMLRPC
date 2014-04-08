@@ -43,7 +43,15 @@ sub call {
 
         if (!$error) {
             if ($som->fault) {
-                $self->log($func, \@opts, undef, $som->faultstring) if $self->can('log');
+                $self->log(
+                    {
+                        proxy_url => $self->{__RPC__}->proxy->endpoint,
+                        method    => $func,
+                        params    => \@opts,
+                        content   => undef,
+                        error     => $som->faultstring
+                    }
+                ) if $self->can('log');
                 throw Exception::API::XMLRPC $som->faultstring;
             } else {
                 $result = [$som->paramsall];
@@ -53,7 +61,15 @@ sub call {
         sleep(1);
     }
 
-    $self->log($func, \@opts, $result, $error) if $self->can('log');
+    $self->log(
+        {
+            proxy_url => $self->{__RPC__}->proxy->endpoint,
+            method    => $func,
+            params    => \@opts,
+            content   => $result,
+            error     => $error
+        }
+    ) if $self->can('log');
 
     throw Exception::API::XMLRPC $error unless $result;
     return $result;
