@@ -1,3 +1,9 @@
+libtertiusqbit-application-model-api-xmlrpc-perl (0.003) raring; urgency=low
+
+  * Rename debian package
+
+ -- Dmitry Lukiyanchuk <tertius@yandex-team.ru>  Fri, 17 Apr 2015 17:47:25 +0300
+
 libtertiusqbit-application-model-api-xmlrpc-perl (0.002) raring; urgency=low
 
   * delete key "content" if value equal "undef"
